@@ -1,5 +1,5 @@
 # Upgrading the Capstone servers from Heroku-18 to Heroku-20
-Capstone is a monolithic web application that is hosted on Heroku. Heroku uses [stacks](https://devcenter.heroku.com/articles/stack), which are operating system images that provide the underlying setup necessary to run applications. Heroku-18 is a stack that reaches end-of-life on 2023-04-30. After this date, it will no longer be possible to deploy using the Heroku-18 stack. In order to ensure that Capstone deployments are still possible, the application must be upgraded to use the Heroku-20 stack before the end-of-life deadline.
+Capstone is a monolithic web application that is hosted on Heroku. Heroku uses [stacks](https://devcenter.heroku.com/articles/stack), which are operating system images that provide the underlying setup necessary to run applications. Heroku-18 is a stack that reaches end-of-life on 2023-04-30. After this date, deployments that use the Heroku-18 stack will fail. It is essential to upgrade Capstone to the Heroku-20 stack before the end-of-life deadline to ensure that application deployments are still possible.
 
 ## Audience
 This guide is meant for the Capstone platform engineering team.
@@ -25,12 +25,12 @@ To upgrade the Heroku stack version, do the following:
 1. Locate the `stack` attribute under the `”heroku_app”` resource in the `capstone/staging/main.tf` file.
 2. Update the value of the attribute to `”heroku-20”`.
 3. Submit a pull request with the change and assign the pull request to the platform engineering team.
-4. Once the pull request is approved, merge it.
+4. Merge the pull request after it is approved.
 5. Log in to the Terraform website and navigate to the `capstone-staging` workspace. 
 6. Verify that the latest plan includes the changes to the stack version as well as any necessary buildpack version updates. 
 7. Apply the plan and verify that it runs successfully.
 8. If the plan fails to apply, review the logs outputted on the Terraform website and debug as necessary.
-9. Once the plan on Terraform is applied, make the changes go into effect by restarting the Capstone application with the following command line interface instruction: `heroku restart -a capstone-staging`.
+9. After the plan on Terraform is applied, make the changes go into effect by restarting the Capstone application with the following command line interface instruction: `heroku restart -a capstone-staging`.
 10. Verify that Capstone is stable on staging and that it is [using the Heroku-20 stack](https://devcenter.heroku.com/articles/stack#viewing-which-stack-your-app-is-using).
 11. Repeat steps 1-8 using the `capstone/production/main.tf` file, the `capstone-production` workspace, and the `heroku restart -a capstone-production` command. This is to apply the changes to the production environment.
 
