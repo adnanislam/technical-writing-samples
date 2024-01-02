@@ -24,7 +24,7 @@ Take the following steps when creating pull requests for the code changes:
 1. Organize modified files based on their code owners, identified by the `@team` file annotation at the top of each file.
 2. Create a pull request for each code owner and assign the pull request to the respective code owner.
 3. Make any changes and address questions as necessary, following the guidance provided by the code owner.
-4. Once the pull request is approved, merge it. Note that these fixes are expected to be compatible with both Ruby 3.0 and Ruby 2.7, allowing them to be safely pushed even though the application is still on Ruby 2.7 at this point.
+4. Merge the pull request after it is approved. Note that these fixes are expected to be compatible with both Ruby 3.0 and Ruby 2.7, allowing them to be safely pushed even though the application is still on Ruby 2.7 at this point.
 
 ## Running Capstone on Ruby 3.0 locally
 1. Update the `.ruby-version` file and Gemfile to specify Ruby 3.0.
@@ -34,10 +34,10 @@ Take the following steps when creating pull requests for the code changes:
 5. Submit a pull request containing the version upgrade change along with any necessary changes that arise due to testing. Assign the pull request to the platform engineering team and the relevant code owners based on the files that were modified.
 6. Make any changes and address questions on the pull request as necessary.
 
-Once the pull request is approved, the application is ready to go live with the upgraded Ruby version in the staging environment.
+After the pull request is approved, the application is ready to go live with the upgraded Ruby version in the staging environment.
 
 ## Deploy to staging
-Once the pull request that explicitly upgrades the application code version to Ruby 3 is merged, it will automatically be deployed to staging. Monitor the deployment for any potential issues, and in case of critical functionality failures or other major issues, be prepared to roll back the deployment. Once the updated code is in staging, ask all code owners to manually test workflows that they are familiar with to verify that all functionality works as expected. Ensure that all tests pass on staging.
+When the pull request that explicitly upgrades the application code version to Ruby 3 is merged, it will automatically deploy to staging. Monitor the deployment for any potential issues, and in case of critical functionality failures or other major issues, be prepared to roll back the deployment. Once the updated code is in staging, ask all code owners to manually test workflows that they are familiar with to verify that all functionality works as expected. Ensure that all tests pass on staging.
 
 ## Deploy to production
 At this point, the Ruby 3.0 upgrade appears stable on staging and can be promoted to production with a high degree of confidence. The code in staging will be promoted to production according to the [deployment schedule](#). During this time, monitor the deployment and repeat the same testing that was done on staging for production. Be prepared to roll back the deployment if necessary.
